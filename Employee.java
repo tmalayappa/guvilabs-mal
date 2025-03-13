@@ -1,33 +1,29 @@
-package Task2;
+package Task4;
 
-public class Employee extends Person{
-	private int empID;
-	private double salary;
-	
-	public Employee (String name, int age, int empID, double salary) {
-		super(name, age);
-		this.empID = empID;
-		this.salary = salary;
-	}
+public class Employee implements Taxable{
+    private int empId;
+    private String name;
+    private double salary;
 
-	public int getEmpID() {
-		return empID;
-	}
-	
-	public double getSalary() {
-		return salary;
-	}
-	
+    public Employee(int empId, String name, double salary) {
+        this.empId = empId;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    @Override
+    public double calcTax() {
+        return salary * 12 * incomeTax; // Yearly salary * incomeTax
+    }
+
     @Override
     public String toString() {
-        return "Employee [employeeID=" + empID + ", salary=" + salary + ", " + super.toString() + "]";
+        return "Employee [empId=" + empId + ", name=" + name + ", salary=" + salary + "]";
     }
-	
-	public void Display () {
-        System.out.println("Person's Name : " + super.getName());
-        System.out.println("Person's Age : " + super.getAge());
-        System.out.println("Person's employee ID : " + empID);
-        System.out.println("Person's Salary : " + salary);
-	}	
-	
+    
+	public void DisplayEmployee () {
+        System.out.println("Employee's ID : " + empId);
+        System.out.println("Employee's Name : " + name);
+        System.out.println("Employee's Salary : " + salary);
+	}
 }
