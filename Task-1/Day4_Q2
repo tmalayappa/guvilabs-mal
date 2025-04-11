@@ -1,0 +1,21 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		// https://docs.google.com/document/d/1CDf_R7hhh5um2knORMuiLHykpFdtMmGW/edit?pli=1 - Question 2
+
+        Scanner inputA = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int A = inputA.nextInt();
+        
+        if (A > 0) {
+        	System.out.println(A + " is a positive number.");
+        } else if (A < 0) {
+        	System.out.println(A + " is a negative numbner.");
+        } else {
+        	System.out.println(A + " is Zero");
+        }
+    }
+
+}
