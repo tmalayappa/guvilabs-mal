@@ -1,0 +1,29 @@
+h1 {color: blue;}
+  
+  section {
+    background-color: lightgray;
+    padding: 20px;
+  }
+
+ .pwhite { color: white; }
+  ul,h2.magenta { color: rgb(152, 35, 206); }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-between;
+    }
+
+    .item {
+        width: 100px;
+        height: 100px;
+        background-color: #3498db;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin: 10px;
+        }

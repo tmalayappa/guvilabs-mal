@@ -1,0 +1,76 @@
+@media screen and (min-width:914px){
+    div > input {
+        padding: 10px;
+        width: 170px;
+    }
+}
+@media screen and (min-width:412px) and (max-width:914px){
+    div > input {
+        padding: 10px;
+        width: 170px;
+    }
+
+    div > input{
+        padding: 10px;
+        width: 170px;
+    }
+
+    div > label {
+        padding: 0px;
+    }
+
+    div > input[type="submit"] {
+        margin-left: 75%;
+        width: 25%;
+        background-color: dodgerblue;
+        color: whitesmoke;
+    }
+
+}
+
+@media screen and (min-width:344px) and (max-width:882px) and (orientation: landscape){
+    div > input[type="submit"] {
+        margin-left: 75%;
+        width: 25%;
+        background-color: dodgerblue;
+        color: whitesmoke;
+    }
+
+    .last_element {
+        margin-left: 30px;
+        margin-top: 0px;
+    }
+}
+
+@media screen and (min-width:882px) and (max-width:344px) and (orientation: portrait){
+    div > input[type="submit"] {
+        margin-left: 75%;
+        width: 35%;
+        background-color: dodgerblue;
+        color: whitesmoke;
+    }
+
+    .last_element {
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+    
+    div > input{
+        width: 136px;
+        font-size: 11px;
+    }
+
+    .mbl_div_scnd {
+        padding-top: 0px;
+    }
+
+    div > label {
+        padding: 0px 0px 0px 3px;
+        position: absolute;
+        font-size: 12px;
+    }
+
+    selector {
+        property: value;
+    }
+}

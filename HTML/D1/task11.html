@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>All HTML Input Types</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        div {
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="range"],
+        input[type="checkbox"],
+        input[type="radio"],
+        input[type="file"],
+        input[type="url"],
+        input[type="tel"],
+        input[type="search"],
+        input[type="color"],
+        input[type="datetime-local"],
+        input[type="time"],
+        input[type="month"],
+        input[type="week"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="date"],
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>All HTML Input Types</h1>
+    <form>
+        <div>
+            <label for="text">Text Input:</label>
+            <input type="text" id="textInput" name="textInput" placeholder="Enter text here">
+        </div>
+        <div>
+            <label for="range">Range Input:</label>
+            <input type="range" id="rangeInput" name="rangeInput" min="0" max="100" value="50">
+        </div>
+        <div>
+            <label for="checkbox">Checkbox Input:</label>
+            <input type="checkbox" id="checkboxInput" name="checkboxInput" value="checkboxValue"> Check me
+        </div>
+        <div>
+            <label for="radio">Radio Input:</label>
+            <input type="radio" id="radioInput1" name="radioInput" value="option1"> Option 1<br>
+            <input type="radio" id="radioInput2" name="radioInput" value="option2"> Option 2<br>
+            <input type="radio" id="radioInput3" name="radioInput" value="option3"> Option 3<br>
+        </div>
+        <div>
+            <label for="file">File Input:</label>
+            <input type="file" id="fileInput" name="fileInput">
+        </div>
+        <div>
+            <label for="url">URL Input:</label>
+            <input type="url" id="urlInput" name="urlInput" placeholder="https://example.com">
+        </div>  
+        <div>
+            <label for="tel">Telephone Input:</label>
+            <input type="tel" id="telInput" name="telInput" placeholder="+1234567890">  
+        </div>
+        <div>
+            <label for="search">Search Input:</label>
+            <input type="search" id="searchInput" name="searchInput" placeholder="Search...">
+        </div>
+            <label for="email">Email Input:</label> 
+            <input type="email" id="emailInput" name="emailInput" value="xyz@example.com">   
+        </div>
+        <div>
+            <label for="password">Password Input:</label>
+            <input type="password" id="passwordInput" name="passwordInput" value="defaultpassword">
+        </div>
+        <div>
+            <label for="number">Number Input:</label>
+            <input type="number" id="numberInput" name="numberInput" value="10">
+        </div>
+        <div>
+            <label for="textarea">Textarea:</label>
+            <textarea id="textareaInput" name="textareaInput" rows="4" cols="50" placeholder="Enter text here..."></textarea>
+        </div>
+        <div>
+            <label for="hidden">Hidden Input:</label>
+            <input type="hidden" id="hiddenInput" name="hiddenInput" value="hiddenValue">       
+        </div>
+        <div>
+            <label for="image">Image Input:</label>
+            <input type="image" id="imageInput" name="imageInput" src="https://via.placeholder.com/150" alt="Submit" width="150" height="150">
+        </div>
+        <div>
+            <label for="date">Date Input:</label>
+            <input type="date" id="dateInput" name="dateInput" value="2025-04-14">
+        </div>
+        <div>
+            <label for="time">Time Input:</label>
+            <input type="time" id="timeInput" name="timeInput" value="10:46">
+        </div> 
+        <div>
+            <label for="datetime">Datetime Input:</label>
+            <input type="datetime" id="datetimeInput" name="datetimeInput" value="2025-04-14T10:46">
+        </div>
+        <div>
+            <label for="week">Week Input:</label>
+            <input type="week" id="weekInput" name="weekInput" value="2025-W15">
+        </div>
+        <div>
+            <label for="month">Month Input:</label>
+            <input type="month" id="monthInput" name="monthInput" value="2025-04">
+        </div>
+        <div>
+            <label for="color">Color Input:</label>
+            <input type="color" id="colorInput" name="colorInput" value="#ff0000">
+        </div>
+        <div>
+            <label for="submit">Submit Button:</label>
+            <input type="submit" id="submitInput" name="submitInput" value="Submit">
+        </div>
+        <div>
+            <label for="reset">Reset Button:</label>
+            <input type="reset" id="resetInput" name="resetInput" value="Reset">
+        </div>
+        <div>
+            <label for="button">Button:</label>
+            <input type="button" id="buttonInput" name="buttonInput" value="Click Me">
+        </div>
+    </form>
+</body>
+</html>

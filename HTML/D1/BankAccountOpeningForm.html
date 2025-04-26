@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bank Account Opening Form</title>
+        <link rel="stylesheet" type="text/css" href="account-form.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="account-form-media.css">
+    </head>
+    </head>
+    <body>
+        <h1>Welcome to Guvi Bank</h1>
+        <p>Please fill the below form to proceed the account creation</p>
+
+        <section
+
+		    <form action="" method="POST">
+
+                <div>
+                    <input type="text" name="firstName" placeholder="Enter Your First Name"  required>
+                    <input type="text"  name="lastName" placeholder="Enter Your Last Name" class="last_element" required>
+                </div>
+
+                <div>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="number" name="phone" placeholder="Phone Number" class="last_element" required>  
+                </div>
+			
+                <div>
+                    <input type="checkbox" name="ATM" value="ATM" /> 
+                    <label>Do you want ATM Card</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="Internet" value="Internet" />
+                    <label>Do you want Internet banking</label>
+                </div>
+
+                <div class="submitBtn">
+                    <input type="submit" name="submit" value="Create">
+                </div>
+
+            </form>
+
+        </section>
+
+    </body>
+</html>

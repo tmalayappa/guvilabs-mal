@@ -1,0 +1,52 @@
+* {
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+h1, p {
+	text-align: center;
+	color: whitesmoke;
+	padding: 10px 0px;
+}
+
+section {
+	padding: 10px;
+	width: 50%;
+	border: solid;
+	margin-left: 25%;
+	margin-top: 3%;
+}
+
+body {
+	background-color: black;
+	color: white;
+}
+
+div {
+	padding: 10px;
+}
+
+div > input {
+	padding: 10px;
+	width: 250px;
+}
+
+.last_element {
+	margin-left: 30px;
+}
+
+div > input[type="submit"] {
+	margin-left: 75%;
+	width: 25%;
+	background-color: dodgerblue;
+	color: whitesmoke;
+}
+
+div > input[type="checkbox"] {
+	width: 15px !important;
+}
+
+div > label {
+	padding: 10px;
+}
