@@ -1,0 +1,25 @@
+import java.util.Scanner;
+	public class Main {
+
+		public static void main(String[] args) {
+			// https://docs.google.com/document/d/1CDf_R7hhh5um2knORMuiLHykpFdtMmGW/edit?pli=1 - Question 5
+
+	        Scanner inputAmt = new Scanner(System.in);
+
+	        System.out.print("Enter the purchased amount : ");
+	        double amount = inputAmt.nextDouble();
+	        
+	        if (amount >= 1000) {
+	        	double discount = amount * 0.20;
+	        	double payableAmt = amount - discount;
+	        	System.out.println("Payable amount after discount : $" + payableAmt);
+	        } else if (amount >= 500 && amount < 1000) {
+	        	double discount = amount * 0.10;
+	        	double payableAmt = amount - discount;
+	        	System.out.println("Payable amount after discount : $" + payableAmt);
+	        } else {
+	        	System.out.println("Payable amount (no discount) : $" + amount );
+	        }
+	    }
+
+	}
