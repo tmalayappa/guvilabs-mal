@@ -1,0 +1,22 @@
+/* media query - sample css where screenszie changes when the html is opened in difference device with different screensize */
+.c-header {
+    color: red;
+    background-color: blue;
+    text-align: center;
+}
+
+/* Above 600px */
+@media (min-width: 600px) {
+    .c-header {
+        color: green;
+        background-color: yellow;
+    }
+}
+
+/* Above 800px */
+@media (min-width: 800px) {
+    .c-header {
+        color: purple;
+        background-color: orange;
+    }
+}

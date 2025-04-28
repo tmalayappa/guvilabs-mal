@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200 h-screen flex items-center justify-center">
+    <div class="bg-white shadow-md rounded px-6 pt-6 pb-6 mb-4 w-full max-w-sm">
+        <h2 class="text-center text-2xl font-bold mb-6 text-gray-700">Sign In</h2>
+        <form class="space-y-4">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                    Email
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 hover:border-blue-500" id="email" type="email" placeholder="Email">
+            </div>
+
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Password
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 hover:border-blue-500" id="password" type="password" placeholder="Password">
+            </div>
+
+
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+                    Sign In
+                </button>
+                <a class="font-semibold text-sm text-blue-500 hover:text-green-800" href="#">
+                    Forgot Password?
+                </a>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

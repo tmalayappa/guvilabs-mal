@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <header>
+
+    </header>
+    <body>
+
+    <!-- Output on the Dom -->
+    <h1>Output from html element</h1>
+    <!-- External script -->
+    <!-- <script src="script.js"></script> -->
+    <!-- Internal script -->
+    <script>
+        // alert("message from alert")
+
+        {
+            const a = 10; // localScope, cant mutate
+            let greetings = "Hello world"; // localScope, can mutate
+            var globalMsg = "Some Message" // globalScop, can mutate
+            console.log("=====================>1")
+            console.log(greetings);
+            {
+                console.log(greetings)
+            }
+        }
+
+        {
+            console.log("=====================>2")
+            console.log(globalMsg)
+            console.log(greetings);
+        }
+    </script>
+
+    </body>
+</html>

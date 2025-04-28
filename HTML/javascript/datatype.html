@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Data Types in JavaScript</title>
+    </head>
+    <body>
+        <h1>Data Types in JavaScript</h1>
+        <p>JavaScript has several built-in data types:</p>
+    </body>
+
+    <script>
+        // strongly typed language C, C++, java, TypeScript
+        // loosely typed language PHP, JS, 
+        let name = "RAJA"; // 'RAJA' // `RAJA`
+        let age = 30;
+        let contacts = [1234, 12345]
+        let dob = new Date("2014-01-10")
+
+        let user1 = {
+            name,
+            userAge: age,
+            userAdd: 'TN',
+            phoneNumbers: contacts,
+            dob
+        } // object, key/value
+
+        let users = [user1, 1] // type object, index
+        let b = null; // type object
+        let a = undefined; // type undefined
+        console.log(dob)
+        console.log(users[0].name)
+        console.log(users[1])
+
+    </script>
+
+
+
+
+</html>
