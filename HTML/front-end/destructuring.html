@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">click me</button>
+    <input type="text" id="display" class="form-control" value="0">
+    <a href="http://www.google.com" id="glink" style="display: none;">Google</a>
+    <script>
+        // Input Events
+        const input = document.getElementById('display');
+        input.addEventListener('input', function() {
+            console.log("Input event triggered");
+        });
+        input.addEventListener('change', function() {
+            console.log("Change event triggered");
+        });
+        input.addEventListener('focus', function() {
+            console.log("Focus event triggered");
+        });
+        input.addEventListener('blur', function() {
+            console.log("Blur event triggered");
+        });
+        input.addEventListener('keydown', function(event) {
+            console.log("Key down event triggered", event.key);
+        });
+        input.addEventListener('keyup', function(event) {
+            console.log("Key up event triggered", event.key);
+        });
+        input.addEventListener('keypress', function(event) {
+            console.log("Key press event triggered", event.key);
+        });
+        input.addEventListener('paste', function(event) {
+            console.log("Paste event triggered", event.clipboardData.getData('text'));
+        });
+        input.addEventListener('copy', function(event) {
+            console.log("Copy event triggered");
+        });
+        input.addEventListener('cut', function(event) {
+            console.log("Cut event triggered");
+        });
+        // Button Events 
+        const button = document.getElementById('btn');
+        button.addEventListener('click', function() {
+            console.log("Button clicked");
+            const glintk = document.getElementById('glink');
+            glintk.click(); // programmatically click the link
+        });
+        // mouseover
+        button.addEventListener('mouseover', function() {
+            console.log("Mouse over");
+        });
+        // mouseout
+        button.addEventListener('mouseout', function() {
+            console.log("Mouse out");
+        });
+        // mousemove
+        button.addEventListener('mousemove', () => {
+            console.log("Mouse move");
+        });
+
+        // Destructuring
+        // 1. Object Destructuring
+        const {name, add, ...rest1} = {name:'raja', add:'trichy', phone:1234, clg:'govt'}; // object destructuring
+        // 2. Array Destructuring  
+        const [a, b, c, ...rest2] = [1, 2, 3, 4, 5, 6]; // array destructuring
+        console.log(rest1, rest2); // raja
+
+        // 3. Nested Destructuring
+        const user1 = {
+            name:'raja', 
+            add:'trichy', 
+            phone: {
+                ph1:1223, 
+                ph2:1233
+            }
+        };
+
+        // const user2 = {...user1}; // soft clone
+        // const user2 = JSON.parse(JSON.stringify(user1)); // deep clone
+        user2 = structuredClone(user1); // deep clone
+        user2.name = 'kumar';
+        user2.phone.ph1 = 9999; 
+        user2.phone.ph2 = 8888;
+        console.log("user1", user1);
+        console.log("user2", user2);
+
+        function test(a, ...remaingArguments) {
+            console.log(arguments); // [1, 2, 3, 4, 5]
+            console.log(a); // 1
+            console.log(remaingArguments); // [2, 3, 4, 5]
+        }
+        test(1, 2, 3, 4, 5); // function call
+    </script>
+</body>
+</html>
