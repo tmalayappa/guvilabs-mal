@@ -1,0 +1,20 @@
+Task 1:
+
+const numbers1 = [1, 2,3 ,4, 5, 6, 7, 9]
+    const numbers2 = [6, 7, 9, 10, 11, 12, 13]
+
+    // const exptected = [6, 7, 9]; // combined values ---> expected result
+
+Task 2:
+const deposites = [
+    {date:"01-05-2025", name:'kumar', deposit: 100},
+    {date:"01-05-2025", name:'ranjit', deposit: 150},
+    {date:"02-05-2025", name:'kumar', deposit: 200},
+    {date:"02-05-2025", name:'ranjit', deposit: 160},
+]
+/*
+const expected = [
+    {date:'01-05-2025', users:{kumar:100, ranjit:150}, max:ranjit},
+    {date:'02-05-2025', users:{kumar:200, ranjit:160}, max:kumar},
+]
+*/
