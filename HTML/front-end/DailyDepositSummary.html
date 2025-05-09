@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Daily Deposit Summary</title>
+        <style>
+            body { font-family: sans-serif; }
+            .daily-summary { margin-bottom: 20px; border: 1px solid #ccc; padding: 15px; }
+            .user-deposit { margin-left: 20px; }
+        </style>
+    </head>
+
+
+    <body>
+        <h1>Daily Deposit Summary</h1>
+
+        <div id="depositSummary">
+        </div>
+
+        <script>
+            const deposites = [
+                { date: "01-05-2025", name: 'kumar', deposit: 100 },
+                { date: "01-05-2025", name: 'ranjit', deposit: 150 },
+                { date: "02-05-2025", name: 'kumar', deposit: 200 },
+                { date: "02-05-2025", name: 'ranjit', deposit: 160 },
+                { date: "02-05-2025", name: 'alice', deposit: 180 },
+                { date: "03-05-2025", name: 'kumar', deposit: 120 },
+                { date: "03-05-2025", name: 'bob', deposit: 90 },
+                { date: "03-05-2025", name: 'ranjit', deposit: 170 },
+            ];
+    
+            function summarizeDailyDeposits(deposits) {
+                const dailySummary = {};
+    
+                deposits.forEach(deposit => {
+                    if (!dailySummary[deposit.date]) {
+                        dailySummary[deposit.date] = {
+                            users: {},
+                            maxDepositor: null,
+                            maxDepositAmount: 0,
+                        };
+                    }
+                    dailySummary[deposit.date].users[deposit.name] = deposit.deposit;
+    
+                    if (deposit.deposit > dailySummary[deposit.date].maxDepositAmount) {
+                        dailySummary[deposit.date].maxDepositAmount = deposit.deposit;
+                        dailySummary[deposit.date].maxDepositor = deposit.name;
+                    } else if (deposit.deposit === dailySummary[deposit.date].maxDepositAmount) {
+                        if (dailySummary[deposit.date].maxDepositor && dailySummary[deposit.date].maxDepositor !== deposit.name) {
+                            dailySummary[deposit.date].maxDepositor += ` & ${deposit.name}`;
+                        } else if (!dailySummary[deposit.date].maxDepositor) {
+                            dailySummary[deposit.date].maxDepositor = deposit.name;
+                        }
+                    }
+                });
+    
+                const summaryHTML = Object.entries(dailySummary)
+                    .map(([date, data]) => {
+                        let usersHTML = '';
+                        for (const user in data.users) {
+                            usersHTML += `<div class="user-deposit">${user}: ${data.users[user]}</div>`;
+                        }
+                        return `
+                            <div class="daily-summary">
+                                <h3>Date: ${date}</h3>
+                                <h4>Deposits:</h4>
+                                ${usersHTML}
+                                <p><strong>Maximum Depositor:</strong> ${data.maxDepositor || 'N/A'}</p>
+                            </div>
+                        `;
+                    })
+                    .join('');
+    
+                document.getElementById('depositSummary').innerHTML = summaryHTML;
+            }
+    
+            // Call the function to generate the summary
+            summarizeDailyDeposits(deposites);
+        </script>
+        
+    </body>
+</html>

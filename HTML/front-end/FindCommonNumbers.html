@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Find Common Numbers</title>
+    </head>
+
+
+    <body>
+
+        <h1>Common Numbers in Two Arrays</h1>
+
+        <p id="numbers1"></p>
+        <p id="numbers2"></p>
+        <br />
+        <p id="result">Unique</p>
+        <p id="result1"></p>
+
+        <script>
+            function findCommonNumbers() {
+            const numbers1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            const numbers2 = [6, 7, 9, 10, 11, 12, 13, 6, 1];
+            const commonNumbers = [];
+
+            for (let i = 0; i < numbers1.length; i++) {
+                for (let j = 0; j < numbers2.length; j++) {
+                    if (numbers1[i] === numbers2[j]) {
+                        commonNumbers.push(numbers1[i]);
+                        // To avoid adding duplicates if numbers appear multiple times in both arrays,
+                        // you might want to add a check if the number is already in commonNumbers.
+                        // However, the current implementation will add it again.
+                    }
+                }
+            }
+
+            // Remove duplicates from commonNumbers (optional, but often desired)
+            const uniqueCommonNumbers = [...new Set(commonNumbers)];
+
+            // Display the arrays
+            const numbers1Element = document.getElementById('numbers1');
+            numbers1Element.textContent = "Numbers in array One: " + numbers1.join(', ');
+            const numbers2Element = document.getElementById('numbers2');
+            numbers2Element.textContent = "Numbers in array Two: " + numbers2.join(', ');
+
+            // Display the results
+            // Display the unique common numbers
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = "Numbers in both arrays - only unique numbers: " + uniqueCommonNumbers.join(', ');
+            
+            // Display all common numbers
+            const resultElement1 = document.getElementById('result1');
+            resultElement1.textContent = "Numbers in both arrays - all matching numbers: " + commonNumbers.join(', ');
+            }
+
+            // Call the function when the page loads
+            window.onload = findCommonNumbers;
+        </script>
+
+    </body>
+</html>
