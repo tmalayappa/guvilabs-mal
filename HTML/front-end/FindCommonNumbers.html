@@ -13,7 +13,7 @@
         <p id="numbers1"></p>
         <p id="numbers2"></p>
         <br />
-        <p id="result">Unique</p>
+        <p id="result"></p>
         <p id="result1"></p>
 
         <script>
@@ -33,7 +33,8 @@
                 }
             }
 
-            // Remove duplicates from commonNumbers (optional, but often desired)
+            /* Remove duplicates from commonNumbers (optional, but often desired) using Set and spread syntax (...), 
+            which expands the elements of the Set back into a new arra */
             const uniqueCommonNumbers = [...new Set(commonNumbers)];
 
             // Display the arrays
