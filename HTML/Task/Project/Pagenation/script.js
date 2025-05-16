@@ -10,7 +10,6 @@ async function fetchData(url) {
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
-        // Display error message to the user
         const tableContainer = document.getElementById('table-container');
         tableContainer.innerHTML = `<div class="text-red-500 text-center">Failed to load data. Please check your network connection.</div>`;
         const paginationContainer = document.getElementById('pagination-container');
@@ -24,13 +23,11 @@ function displayData(data, page = 1, limit = 10) {
     tableBody.innerHTML = ''; // Clear existing data
     const descriptionElement = document.getElementById('description');
 
-
     const startIndex = (page - 1) * limit;
     const endIndex = startIndex + limit;
     const pageData = data.slice(startIndex, endIndex);
 
     if (pageData.length === 0 && page > 1) {
-        // Handle the case where the requested page is empty (after deleting last item for example)
         displayData(data, page - 1, limit); // Go to the previous page
         return;
     }
@@ -128,15 +125,15 @@ async function initialize() {
         const data = await fetchData(gistUrl);
         displayData(data); // Initial display
         displayPagination(data, 1); // Initial pagination
-        runTestSuite();
+        return true; // Indicate successful initialization
     } catch (error) {
-        // fetchData will handle the error logging.
         console.error("Initialization failed", error);
+        return false; // Indicate failure
     }
 }
 
 // Test Suite
-function runTestSuite() {
+async function runTestSuite() {
     const testResultsContainer = document.getElementById('test-results');
     let testCount = 0;
     let passedCount = 0;
@@ -151,7 +148,7 @@ function runTestSuite() {
         }
     };
 
-    // Mock data for testing
+    // Mock data for testing (independent of the fetched data for unit tests)
     const mockData = [
         { id: 1, name: 'John Doe', email: 'john.doe@example.com' },
         { id: 2, name: 'Jane Smith', email: 'jane.smith@example.com' },
@@ -240,9 +237,8 @@ function runTestSuite() {
     assert(tableResponsiveElement !== null, 'Test Case 13: Check if the table-responsive element exists');
 
     // Test case 14: Check if the table element has the class "table table-bordered"
-    const tableElement = document.querySelector('.table');
-    const hasTableBorderedClass = tableElement.classList.contains('table-bordered');
-    assert(hasTableBorderedClass, 'Test Case 14: Check if the table element has the class "table table-bordered"');
+    const tableElement = document.querySelector('table.table-bordered');
+    assert(tableElement !== null, 'Test Case 14: Check if the table element has the class "table table-bordered"');
 
     console.log(`${passedCount} / ${testCount} tests passed`);
     const summary = `<p><b>${passedCount} / ${testCount} tests passed</b></p>`;
@@ -250,3 +246,4 @@ function runTestSuite() {
 }
 
 initialize();
+runTestSuite();
