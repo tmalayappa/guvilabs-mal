@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculator</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://cdn.tailwindcss.com"></script>
+        
+    </head>
+
+
+    <body class="bg-gray-100 flex items-center justify-center min-h-screen py-8">
+        <h1 id="title">Calculator</h1>
+        <p id="description">A simple web calculator.</p>
+        <div class="calculator">
+            <input type="text" id="result" class="display" value="0" readonly>
+            <div id="display" class="display">0</div>
+            <div class="buttons">
+                <button id="clear" class="button clear" onclick="clearDisplay()">C</button>
+                <button id="divide" class="button operator" onclick="appendOperator('/')">÷</button>
+                <button id="7" class="button number" onclick="appendNumber('7')">7</button>
+                <button id="8" class="button number" onclick="appendNumber('8')">8</button>
+                <button id="9" class="button number" onclick="appendNumber('9')">9</button>
+                <button id="multiply" class="button operator" onclick="appendOperator('*')">×</button>
+                <button id="4" class="button number" onclick="appendNumber('4')">4</button>
+                <button id="5" class="button number" onclick="appendNumber('5')">5</button>
+                <button id="6" class="button number" onclick="appendNumber('6')">6</button>
+                <button id="subtract" class="button operator" onclick="appendOperator('-')">-</button>
+                <button id="1" class="button number" onclick="appendNumber('1')">1</button>
+                <button id="2" class="button number" onclick="appendNumber('2')">2</button>
+                <button id="3" class="button number" onclick="appendNumber('3')">3</button>
+                <button id="add" class="button operator" onclick="appendOperator('+')">+</button>
+                <button id="0" class="button number" onclick="appendNumber('0')">0</button>
+                <button id="decimal" class="button decimal" onclick="appendDecimal()">.</button>
+                <button id="equal" class="button operator" onclick="calculate()">=</button>
+                <button id="memory" class="button" onclick="toggleMemoryStore()">M+</button>
+            </div>
+            <div id="test-suite" class="mt-8">
+                <h2 class="text-2xl font-semibold mb-4">Test Suite</h2>
+                <div id="test-results" class="mt-4">
+                    </div>
+            </div>
+        </div>
+
+        <script src="https://app.zenclass.in/sheets/v1/js/zen/suite/bundle.js"></script>
+        <script>
+            let display = document.getElementById('result');
+            let currentInput = '0';
+            let previousInputs = [];
+            let memoryStorage = localStorage.getItem('calculatorMemory') || '0';
+
+            function updateDisplay() {
+                display.textContent = currentInput;
+            }
+
+            function appendNumber(number) {
+                if (currentInput === '0' || currentInput === 'Infinity' || currentInput === '-Infinity' || isNaN(parseFloat(currentInput))) {
+                    currentInput = number;
+                } else {
+                    currentInput += number;
+                }
+                updateDisplay();
+            }
+
+            function appendDecimal() {
+                if (!currentInput.includes('.')) {
+                    currentInput += '.';
+                    updateDisplay();
+                }
+            }
+
+            function appendOperator(operator) {
+                if (currentInput !== '0' && currentInput !== '-' && !isNaN(parseFloat(currentInput)) && !['+', '-', '*', '/'].includes(currentInput.slice(-1))){
+                    previousInputs.push(currentInput);
+                    previousInputs.push(operator);
+                    currentInput = '0';
+                    updateDisplay()
+                }
+                else if (['+', '-', '*', '/'].includes(currentInput.slice(-1)) && operator !== currentInput.slice(-1) ){
+                    // Replace the last operator with the new one
+                    previousInputs[previousInputs.length-1] = operator;
+                    currentInput = '0';
+                    updateDisplay()
+                }
+                else if (currentInput === '0' && operator === '-') {
+                    currentInput = '-'; // Allow starting with a negative sign
+                    updateDisplay();
+                }
+            }
+
+
+
+            function clearDisplay() {
+                currentInput = '0';
+                previousInputs = [];
+                updateDisplay();
+            }
+
+            function calculate() {
+            if (currentInput !== '0' && !isNaN(parseFloat(currentInput)) && previousInputs.length > 0){
+                    previousInputs.push(currentInput);
+                    let expression = previousInputs.join('');
+                    try {
+                        // Use a safer alternative to eval
+                        const result = new Function('return ' + expression.replace(/÷/g, '/').replace(/×/g, '*'))();
+                        currentInput = String(result);
+                        previousInputs = [];
+                        updateDisplay();
+                    } catch (error) {
+                        currentInput = 'Error';
+                        previousInputs = [];
+                        updateDisplay();
+                    }
+            }
+            else if (previousInputs.length > 0 && isNaN(parseFloat(currentInput))){
+                    currentInput = 'Error';
+                    previousInputs = [];
+                    updateDisplay()
+            }
+            }
+
+
+
+            document.addEventListener('keydown', function(event) {
+                const key = event.key;
+                if (key >= '0' && key <= '9') {
+                    appendNumber(key);
+                } else if (key === '.') {
+                    appendDecimal();
+                } else if (['+', '-', '*', '/'].includes(key)) {
+                    appendOperator(key);
+                } else if (key === 'Enter') {
+                    calculate();
+                } else if (key === 'Escape') {
+                    clearDisplay();
+                }
+                else {
+                    alert("Only numbers are allowed");
+                }
+            });
+
+            // Memory Functions
+            function toggleMemoryStore() {
+                if (currentInput !== '0' && !isNaN(parseFloat(currentInput))){
+                    memoryStorage = String(parseFloat(memoryStorage) + parseFloat(currentInput));
+                    localStorage.setItem('calculatorMemory', memoryStorage);
+                    currentInput = memoryStorage;
+                    updateDisplay();
+                }
+                else{
+                    memoryStorage = '0';
+                    localStorage.setItem('calculatorMemory', memoryStorage);
+                    currentInput = memoryStorage;
+                    updateDisplay();
+                }
+
+            }
+
+
+            // Test Suite
+            function runTestSuite() {
+                const testResultsContainer = document.getElementById('test-results');
+                let testCount = 0;
+                let passedCount = 0;
+
+                const assert = (condition, description) => {
+                    testCount++;
+                    const result = condition ? 'pass' : 'fail';
+                    const message = `<p class="${result}">Test ${testCount}: ${description} - <b>${result}</b></p>`;
+                    testResultsContainer.insertAdjacentHTML('beforeend', message);
+                    if (condition) {
+                        passedCount++;
+                    }
+                };
+
+                // Reset Calculator State Before Each Test
+                function resetCalculator() {
+                    currentInput = '0';
+                    previousInputs = [];
+                    updateDisplay();
+                }
+
+                // Test Case 1: Addition
+                resetCalculator();
+                appendNumber('5');
+                appendOperator('+');
+                appendNumber('3');
+                calculate();
+                assert(display.textContent === '8', 'Test Case 1: Addition');
+
+                // Test Case 2: Subtraction
+                resetCalculator();
+                appendNumber('10');
+                appendOperator('-');
+                appendNumber('4');
+                calculate();
+                assert(display.textContent === '6', 'Test Case 2: Subtraction');
+
+                // Test Case 3: Multiplication
+                resetCalculator();
+                appendNumber('6');
+                appendOperator('*');
+                appendNumber('7');
+                calculate();
+                assert(display.textContent === '42', 'Test Case 3: Multiplication');
+
+                // Test Case 4: Division
+                resetCalculator();
+                appendNumber('8');
+                appendOperator('/');
+                appendNumber('2');
+                calculate();
+                assert(display.textContent === '4', 'Test Case 4: Division');
+
+                // Test Case 5: Decimal Addition
+                resetCalculator();
+                appendNumber('2.5');
+                appendOperator('+');
+                appendNumber('3.5');
+                calculate();
+                assert(display.textContent === '6', 'Test Case 5: Decimal Addition');
+
+                // Test Case 6: Clear Function
+                resetCalculator();
+                appendNumber('5');
+                clearDisplay();
+                assert(display.textContent === '0', 'Test Case 6: Clear Function');
+
+                // Test Case 7: Multiple operations
+                resetCalculator();
+                appendNumber('2');
+                appendOperator('+');
+                appendNumber('3');
+                appendOperator('*');
+                appendNumber('4');
+                calculate();
+                assert(display.textContent === '14', 'Test Case 7: Multiple operations');
+
+                // Test Case 8: Division by zero
+                resetCalculator();
+                appendNumber('5');
+                appendOperator('/');
+                appendNumber('0');
+                calculate();
+                assert(display.textContent === 'Infinity', 'Test Case 8: Division by zero');
+
+                // Test Case 9: Negative numbers
+                resetCalculator();
+                appendNumber('-');
+                appendNumber('5');
+                appendOperator('+');
+                appendNumber('10');
+                calculate();
+                assert(display.textContent === '5', 'Test Case 9: Negative numbers');
+
+                // Test Case 10: Floating point numbers
+                resetCalculator();
+                appendNumber('2.5');
+                appendOperator('*');
+                appendNumber('2');
+                calculate();
+                assert(display.textContent === '5', 'Test Case 10: Floating point numbers');
+
+                console.log(`${passedCount} / ${testCount} tests passed`);
+                const summary = `<p><b>${passedCount} / ${testCount} tests passed</b></p>`;
+                testResultsContainer.insertAdjacentHTML('beforeend', summary);
+            }
+
+            runTestSuite();
+    </script>
+    </body>
+</html>
