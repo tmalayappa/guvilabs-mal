@@ -45,17 +45,7 @@ test3()
 
 
 
-// async vs syncronousfunction test() {
-    try {
-        let a = 10;
-        let b = 20;
-        return a + b;   // if any acident happens in the code, it will be caught in the catch block 
-    } catch (error) {
-        return "Error: Something went wrong";
-    }
-
-console.log("response of normal function calling", test());
-
+// async vs syncronousfunction 
 
 function test2 () {
     return new Promise((resolve, reject) => {
@@ -66,8 +56,8 @@ function test2 () {
         } else {
             resolve("Success: Sum is less than 100");
         }
-    });
-}
+    })
+};
 
 test2()
     .then((result) => {

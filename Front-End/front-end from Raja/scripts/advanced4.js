@@ -1,4 +1,6 @@
-    const getApiResponse = await fetch("http://localhost:8080/get-api", {
+    async function getData() {
+        // first call
+        const getApiResponse = await fetch("http://localhost:8080/get-api", {
         method: "GET",
     }); // 180ms
     const getApiData = await getApiResponse.json(); // 0
@@ -14,7 +16,7 @@
     const postApiData = await postApiResponse.json();
 
     return { getApiData,  postApiData};
-
+}
 
 
 getData().then(res=>{
