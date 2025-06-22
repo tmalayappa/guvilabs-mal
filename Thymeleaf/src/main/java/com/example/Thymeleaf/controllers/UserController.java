@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes; // For flash attributes
@@ -127,5 +128,21 @@ public class UserController {
 
         redirectAttributes.addFlashAttribute("message", "User deleted successfully!");
         return "redirect:/users";
+    }
+
+    @GetMapping("/users/{id}") // New endpoint using a path variable
+    public String showUserDetail(@PathVariable Long id, Model model) {
+        Optional<User> userOptional = users.stream()
+                                          .filter(user -> user.getId().equals(id))
+                                          .findFirst();
+        if (userOptional.isPresent()) {
+            model.addAttribute("user", userOptional.get());
+            return "userdetail"; // Return a new template named userdetail.html
+        } else {
+            // Handle user not found (e.g., redirect to user list with an error message)
+            // For simplicity, we'll just redirect to the list here.
+            // In a real app, you might show a dedicated error page or use RedirectAttributes.
+            return "redirect:/users";
+        }
     }
 }

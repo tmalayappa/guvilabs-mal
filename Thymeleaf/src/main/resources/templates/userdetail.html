@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <style>
+        body { padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1, h2 { text-align: center; margin-bottom: 20px; color: #333; }
+        .detail-item { margin-bottom: 10px; }
+        .detail-item strong { display: inline-block; width: 80px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Details</h1>
+
+        <div th:if="${user}">
+            <div class="detail-item">
+                <strong>ID:</strong> <span th:text="${user.id}"></span>
+            </div>
+            <div class="detail-item">
+                <strong>Name:</strong> <span th:text="${user.name}"></span>
+            </div>
+            <div class="detail-item">
+                <strong>Email:</strong> <span th:text="${user.email}"></span>
+            </div>
+        </div>
+        <div th:unless="${user}">
+            <p class="has-text-danger">User not found!</p>
+        </div>
+
+        <a th:href="@{/users}" class="back-link button is-link is-light">Back to User List</a>
+    </div>
+</body>
+</html>
